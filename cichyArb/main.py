@@ -17,7 +17,7 @@ class BetInfo:
         self.drawOdds=drawOdds
         self.bWinOdds=bWinOdds
     def __str__(self):
-        return "{} {} {} {} {} {}".format(self.bookieName, self.optionAName, self.optionBName, self.aWinOdds, self.drawOdds, self.bWinOdds)
+        return "{} {} vs {} {} {} {}".format(self.bookieName, self.optionAName, self.optionBName, self.aWinOdds, self.drawOdds, self.bWinOdds)
 
 class ArbSet:
     def __init__(self, betInfoList=[], arbCoefficent=0):
@@ -42,8 +42,8 @@ driver = webdriver.Chrome(chrome_options=options, executable_path=DRIVER_PATH)
 
 # scraping odds data
 
-cloudbetBets = bookies.getCloudBetSoccer(driver=driver, link="https://www.cloudbet.com/en/sports/soccer/spain-laliga")
-stakeBets = bookies.getStakeSoccer(driver=driver, link="https://stake.com/sports/soccer/spain/la-liga")
+cloudbetBets = bookies.getCloudBetSoccer(driver=driver, link="https://www.cloudbet.com/en/sports/soccer/australia-a-league")
+stakeBets = bookies.getStakeSoccer(driver=driver, link="https://stake.com/sports/soccer/australia/a-league")
 
 # calculating profitability
 
@@ -88,17 +88,4 @@ for arbSet in arbSets:
     print(arbSet.betInfoList[0], "|", arbSet.betInfoList[1], "|", arbSet.arbCoefficient)
     counter += 1
 print("PRINTED", counter, "ARBSETS")
-
-for bet in cloudBet:
-    add = True
-    for arbSet in arbSets:
-        if cloudBet.optionAName == arbSet.betInfoList[0].optionAName:
-            add = False
-    if add:
-        leftovers.append(cloudBet)
-
-counter = 0
-for bet in leftovers:
-    print("LEFTOVER CB:", bet.__str__())
-print("PRINTED", counter, "LEFT")
 

@@ -12,7 +12,7 @@ class BetInfo:
         self.drawOdds=drawOdds
         self.bWinOdds=bWinOdds
     def __str__(self):
-        return "{} {} {} {} {} {}".format(self.bookieName, self.optionAName, self.optionBName, self.aWinOdds, self.drawOdds, self.bWinOdds)
+        return "{} {} vs {} {} {} {}".format(self.bookieName, self.optionAName, self.optionBName, self.aWinOdds, self.drawOdds, self.bWinOdds)
 
 class ArbSet:
     def __init__(self, betInfoList=[], arbCoefficient=0):
